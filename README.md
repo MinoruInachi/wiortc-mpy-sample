@@ -99,31 +99,28 @@ https://github.com/Seeed-Studio/Wio_Extension_RTC
 
 WioRTC(wire=None)
 
-  wire: pyb.I2C オブジェクトを指定。指定しない場合は内部で自動で作成
+	wire: pyb.I2C オブジェクトを指定。指定しない場合は内部で自動で作成
 
 ### メソッド
 
 begin()
 
-  Wio Extension - RTC を始動する。
+	Wio Extension - RTC を始動する。
 
 set_wakeup_period(sec)
 
-  sec 秒後に電源を入れるように指示する。
+	sec 秒後に電源を入れるように指示する。
 
-  実際のところ、255 秒より大きな値の場合には 60 秒単位の指定、15300 秒より大きな値の場合には  3600 秒単位の指定になります。
+	実際のところ、255 秒より大きな値の場合には 60 秒単位の指定、15300 秒より大きな値の場合には  3600 秒単位の指定になります。
 
 shutdown()
 
-  電源の切断を指示する。
+	電源の切断を指示する。
 
 eeprom_write(address, data)
 
-  EEPROM のアドレス address にバイト列 data を書き込みます。
+	EEPROM のアドレス address にバイト列 data を書き込む。
 
 eeprom_read(address, data)
 
-  EEPROM のアドレス address からバイト列 data の長さ分だけ data に読み込みます。
-
-
-
+	EEPROM のアドレス address からバイト列 data に読み込む。
