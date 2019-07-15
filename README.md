@@ -91,4 +91,39 @@ $ brew install
 https://github.com/Seeed-Studio/Wio_Extension_RTC
 ```
 
+## クラス wiortc.WioRTC
+
+公式の Arduino サンプルスケッチにある WioRTC.{h,cpp} を参考に実装しています。
+
+### コンストラクタ
+
+WioRTC(wire=None)
+
+  wire: pyb.I2C オブジェクトを指定。指定しない場合は内部で自動で作成
+
+### メソッド
+
+begin()
+
+  Wio Extension - RTC を始動する。
+
+set_wakeup_period(sec)
+
+  sec 秒後に電源を入れるように指示する。
+
+  実際のところ、255 秒より大きな値の場合には 60 秒単位の指定、15300 秒より大きな値の場合には  3600 秒単位の指定になります。
+
+shutdown()
+
+  電源の切断を指示する。
+
+eeprom_write(address, data)
+
+  EEPROM のアドレス address にバイト列 data を書き込みます。
+
+eeprom_read(address, data)
+
+  EEPROM のアドレス address からバイト列 data の長さ分だけ data に読み込みます。
+
+
 
