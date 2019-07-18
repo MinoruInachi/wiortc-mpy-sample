@@ -19,6 +19,7 @@ pyb.delay(500)
 print('### Device initialize.')
 i2c = pyb.I2C(1, pyb.I2C.MASTER)
 rtc = WioRTC(i2c)
+rtc.begin()
 
 print('### Completed.')
 
