@@ -1,11 +1,13 @@
 from wiolte import wiolte
 from wiortc import WioRTC
 from micropython import const
+from machine import Pin, I2C
+import time
 
 
 BOOT_INTERVAL = const(30)  # [sec.]
 
-pyb.delay(200)
+time.sleep_ms(200)
 print('--- START ---------------------------------------------------')
 
 print('### ### I/O Initialize.')
@@ -13,11 +15,11 @@ wiolte.initialize()
 
 print('### Power supply ON.')
 wiolte.set_grove_power(True)
-pyb.delay(500)
+time.sleep_ms(500)
 
 # Device initialize
 print('### Device initialize.')
-i2c = pyb.I2C(1, pyb.I2C.MASTER)
+i2c = I2C('I2C')
 rtc = WioRTC(i2c)
 rtc.begin()
 
@@ -33,14 +35,14 @@ while True:
         rtc.eeprom_write(0, val)
 
         print('Beep.')
-        beep = pyb.Pin('D38', pyb.Pin.OUT_PP)
+        beep = Pin('D38', Pin.OUT)
         beep.high()
-        pyb.delay(200)
+        time.sleep_ms(200)
         beep.low()
 
         print('Shutdown.')
         rtc.set_wakeup_period(BOOT_INTERVAL)
         rtc.shutdown()
-        pyb.delay(500)
+        time.sleep_ms(500)
     finally:
-        pyb.delay(BOOT_INTERVAL*1000)
+        time.sleep(BOOT_INTERVAL)
