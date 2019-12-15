@@ -1,4 +1,4 @@
-from wiolte import wiolte, LTEModule
+from wiolte import wiolte
 from wiortc import WioRTC
 from micropython import const
 

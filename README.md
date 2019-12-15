@@ -9,13 +9,21 @@ Wio Extension - RTC 用の MicroPython サンプルスクリプト
 * main.py -- wiortc を使ったサンプルスクリプト
 * uasyncio/ -- 非同期 I/O モジュール(*2)。
 
-(*1) 以下の github リポジトリにある wiolte.py を使っています。
+(*1) 以下の github リポジトリにある、井田 健太さん作成の wiolte.py に
+若干の修正を入れています。
 
 ```
 https://github.com/ciniml/mpy-wiolte
 ```
 
+修正は主に以下２点です。
+
+* wiolte.LTEModule を使わない限り uasyncio は必要ないようにした
+* LTEモデムから時刻を取得する wiolte.LTEModule.get_time() メソッドを追加
+
 (*2) 以下の micropython-lib　にある uasyncio を使っています。
+本サンプル中では使いませんが、wiolte.LTEModule でLTE通信を行う
+場合には必要となります。
 
 ```
 https://github.com/micropython/micropython-lib
@@ -32,8 +40,15 @@ https://github.com/micropython/micropython-lib
 
 ### Wio LTE 用 MicroPython ファームウェアのインストール
 
-井田 健太さんが Wio LTE 用に MicroPython を移植してくれています。
-コンパイル済みのファームウェアのバイナリは以下から入手できます。
+以下から WioLTE 用の MicroPython v1.11 のコンパイル済みバイナリを入手します。
+これは井田 健太さんによるオリジナルの Wio LTE 用 MicroPython 移植を元に、
+最新の MicroPython v1.11 をビルドしたものです。
+
+```
+https://github.com/python-sapporo/micropython/releases/download/wiolte-20191107-v1.11/wiolte-20191107-v1.11-580-gabda2af6e.dfu
+```
+
+※ 井田 健太さんによるオリジナルの Wio LTE 用 MicroPython 移植のコンパイル済みのファームウェアは以下から入手できます。
 
 ```
 https://www.fugafuga.org/wiolte/mpy_wio_lte.zip
@@ -111,7 +126,7 @@ set_wakeup_period(sec)
 
 	sec 秒後に電源を入れるように指示する。
 
-	実際のところ、255 秒より大きな値の場合には 60 秒単位の指定、15300 秒より大きな値の場合には  3600 秒単位の指定になります。
+	実際のところ、255 秒より大きな値の場合には 60 秒単位の指定、15300 秒より大きな値の場合には 3600 秒単位の指定になります。
 
 shutdown()
 
